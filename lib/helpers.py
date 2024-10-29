@@ -68,19 +68,33 @@ def delete_department():
 # You'll implement the employee functions in the lab
 
 def list_employees():
-    pass
+    employees = Employee.get_all()
+    for employee in employees:
+        print(employee)
 
 
 def find_employee_by_name():
-    pass
+    name = input("Enter the employee's name: ")
+    employee = Employee.find_by_name(name)
+    print(employee) if employee else print(
+        f'Employee {name} not found')
 
 
 def find_employee_by_id():
-    pass
+    id_ = input("Enter the employee's id: ")
+    employee = Employee.find_by_id(id_)
+    print(employee) if employee else print(f'Department {id_} not found')
 
 
 def create_employee():
-    pass
+    name = input("Enter the employee's name: ")
+    job_title = input("Enter the employee's job title: ")
+    department_id = input("Enter the employee's department id: ")
+    try:
+        employee = Employee.create(name, job_title, department_id)
+        print(f'Success: {employee}')
+    except Exception as exc:
+        print("Error creating employee: ", exc)
 
 
 def update_employee():
